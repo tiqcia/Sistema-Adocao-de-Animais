@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class OlaMundoController {
 
-    @GetMapping("/")
+    @GetMapping("/teste")
     public String home(Model model){
        // model.addAttribute("mensagem", "que iso");
         return "index";
