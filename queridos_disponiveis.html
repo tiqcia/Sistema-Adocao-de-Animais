@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conheça os queridos</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./img/logoProvisorio.png">
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: arial, helvetica, sans-serif;
+    }
+
+    body {
+        background-color: #6b9bc0;
+    }
+
+    /* container principal com layout em linha usando flexbox */
+    .layout {
+        display: flex;
+    }
+
+    /* estilo do texto dentro da seção animais */
+    .animais p {
+        color: white;
+        font-size: 1.5rem;
+        text-transform: uppercase; /* deixa o texto em maiúsculas */
+        font-weight: bold;
+        padding: 20px;
+    }
+
+    /* caixa do filtro fixa na lateral direita da tela */
+    .filtro {
+        position: fixed; /* fixa a posição na tela, não se move ao rolar */
+        right: 0; /* fica encostada na borda direita */
+        top: 50%; /* posiciona verticalmente no meio da tela */
+        transform: translateY(-50%); /* corrige para centralizar verticalmente */
+        background-color: #f9f4f4f1;
+        padding: 35px; /* espaço interno maior para o conteúdo */
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* sombra */
+        z-index: 1000; /* fica acima dos outros elementos */
+        width: 15%; /* largura para se ajustar */
+        box-sizing: border-box; /* inclui padding na largura total */
+        display: flex;
+        justify-content: center; /* centraliza conteúdo horizontalmente */
+        margin-right: 10px;
+    }
+
+    /* formulário dentro do filtro alinhado à esquerda */
+    .filtro form {
+        display: flex;
+        flex-direction: column; /* itens em coluna */
+        align-items: flex-start; /* alinha os itens à esquerda */
+        text-align: left;
+        width: 60%; /* largura do formulário dentro do filtro */
+    }
+
+    /* rótulo dos inputs do filtro */
+    .filtro label {
+        display: block; /* cada label fica em linha própria */
+        margin-bottom: 8px; /* espaço abaixo do label */
+    }
+
+    /* título das seções dentro do filtro */
+    .filtro p {
+        margin-top: 16px;
+        font-weight: bold;
+    }
+
+    /* estilo da caixa de cada animal querido */
+    .querido {
+        background-color: #f9f4f4f1;
+        border: 1px solid #d3d3d3;
+        border-radius: 10px;
+        padding: 7px;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    /* imagens dos queridos com tamanho fixo e bordas arredondadas */
+    .querido img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover; /* mantém proporção e corta se necessário */
+        border-radius: 8px;
+    }
+
+    /* título do querido */
+    .querido h2 {
+        margin-top: 10px;
+        font-size: 1.1rem;
+        color: #444;
+    }
+
+    /* descrição do querido */
+    .querido h4 {
+        font-size: 0.9rem;
+        color: #666;
+        text-align: center; /* corrigi typo 'centerca' para 'center' */
+        font-weight: normal;
+    }
+
+    /* container da seção dos animais com espaço para o filtro */
+    .animais {
+        margin-left: 200px; /* espaço para não ficar atrás do filtro fixo */
+        flex: 1; /* ocupa espaço restante */
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-right: 240px; /* espaço extra para o filtro na direita */
+    }
+
+    /* container que organiza os queridos em grade */
+    .container_queridos {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+        gap: 20px; /* espaço entre as colunas e linhas */
+        margin-top: 30px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+</head>
+
+<body>
+    <!-- div que vai receber o menu via javascript -->
+    <div id="menu"></div>
+
+    <script>
+        // busca o arquivo menu.html e insere dentro da div com id "menu"
+        fetch("menu.html")
+            .then(response => response.text()) // converte resposta para texto
+            .then(data => {
+                document.getElementById("menu").innerHTML = data; // adiciona conteúdo na página
+            });
+    </script>
+
+    <div class="principal">
+        <div class="layout">
+            <div class="filtro">
+                <form method="POST" action="bancodedados"> 
+                    <!-- método POST envia os dados de forma segura para o servidor -->
+                    <!-- action="bancodedados" é a rota para onde o formulário será enviado -->
+                    <p>Sexo</p>
+                    <label for="macho">
+                        <input type="radio" id="macho" name="sexo" value="macho"> Macho
+                    </label>
+                    <label for="fêmea">
+                        <input type="radio" id="fêmea" name="sexo" value="fêmea"> Fêmea
+                    </label>
+
+                    <p>Idade</p>
+                    <label for="filhote">
+                        <input type="radio" id="filhote" name="idade" value="filhote"> Filhote
+                    </label>
+                    <label for="adulto">
+                        <input type="radio" id="adulto" name="idade" value="adulto"> Adulto
+                    </label>
+                    <label for="idoso">
+                        <input type="radio" id="idoso" name="idade" value="idoso"> Idoso
+                    </label>
+
+                    <p>Animal</p>
+                    <label for="cachorro">
+                        <input type="radio" id="cachorro" name="animal" value="cachorro"> Cachorro
+                    </label>
+                    <label for="gato">
+                        <input type="radio" id="gato" name="animal" value="gato"> Gato
+                    </label>
+                    <label for="hamster">
+                        <input type="radio" id="hamster" name="animal" value="hamster"> Hamster
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="animais">
+        <p>Conheça os queridos</p>
+        <div class="container_queridos">
+            <!-- cada bloco representa um animal querido com imagem e texto -->
+            <div class="querido">
+                <img src="img/cachorro_gamer.png" alt="cachorro gamer">
+                <h2>Cachorro Gamer</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/gato_desconfiado.png" alt="gato desconfiado">
+                <h2>Gato Desconfiado</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/gato_fofoqueiro.png" alt="gato fofoqueiro">
+                <h2>Gato Fofoqueiro</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/hamster_frufru.png" alt="hamster frufru">
+                <h2>Hamster Frufru</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/cachorro_feliz.png" alt="cachorro feliz">
+                <h2>cachorro feliz</h2>
+                <h4>descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/hamster_miope.png" alt="hamster miope">
+                <h2>Hamster Miope</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/gato_universitario.jpg" alt="gato universitário">
+                <h2>Gato Universitário</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/salsicha.jpg" alt="salsicha curioso">
+                <h2>Salsicha Curioso</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/gato_dormindo.jpg" alt="gato dorminhoco">
+                <h2>Gato Dorminhoco</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/bug.jpg" alt="pugnossauro">
+                <h2>Pugnossauro</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/hamster_miope.png" alt="hamster miope">
+                <h2>Hamster Miope</h2>
+                <h4>Descrição</h4>
+            </div>
+            <div class="querido">
+                <img src="img/hamster_miope.png" alt="hamster miope">
+                <h2>Hamster Miope</h2>
+                <h4>Descrição</h4>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

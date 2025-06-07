@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastro voluntário</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./img/logoProvisorio.png">
+    
+<style>
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: arial, helvetica, sans-serif;
+}
+
+/* fundo da página e centraliza o conteúdo */
+body {
+    background-color: #9cbcc6;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* container principal que segura tudo com largura máxima e sombra */
+#principal {
+    display: flex;
+    width: 90%;
+    max-width: 1000px;
+    min-height: 600px;
+    height: auto;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* lado esquerdo do container com título e imagem */
+.inicio {
+    flex: 1; /* ocupa metade do espaço */
+    background-color: #ffffff;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* título do lado esquerdo maior e com espaço em baixo */
+.inicio h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+/* imagem ajustada com borda arredondada */
+.inicio img {
+    width: 350px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* lado direito do container onde fica o formulário */
+.final {
+    flex: 1; /* ocupa a outra metade */
+    padding: 40px 30px;
+    background-color: #d9d9d9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* título do formulário */
+.form-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* formulário em coluna e centralizado */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 10px;
+}
+
+/* caixa dos campos de texto, sempre alinhada pra cima */
+.inputbox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+/* texto do campo com espaçamento embaixo */
+.inputbox label {
+    margin-bottom: 4px;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+/* campo de texto e select com largura total e borda arredondada */
+.inputbox input,
+.inputbox select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+/* deixa dois campos lado a lado com espaçamento */
+.duplo {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+/* cada campo dentro do duo ocupa espaço igual */
+.duplo .inputbox {
+    flex: 1;
+    min-width: 20%;
+}
+
+/* botão de enviar com estilo e efeito de hover */
+form input[type="submit"] {
+    display: inline-block;
+    width: 40%;
+    padding: 10px;
+    background-color: #979797;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background-color: #888;
+}
+
+/* container dos botões de enviar e voltar */
+.botoes-cadastro {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* define largura dos botões */
+form input[type="submit"],
+.botao-voltar {
+    width: 100%;
+}
+
+/* estilo do botão voltar, parecido com o de enviar */
+.botao-voltar {
+    display: inline-block;
+    width: 100%;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 8px;
+    background-color: #979797; /* cor cinza */
+    color: #000000;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.botao-voltar:hover {
+    background-color: #888;
+}
+
+/* responsivo - ajustes para telas menores que 768px */
+@media (max-width: 768px) {
+    /* container vira coluna */
+    #principal {
+        flex-direction: column;
+        height: auto;
+    }
+
+    /* as duas seções ocupam 100% da largura */
+    .inicio,
+    .final {
+        flex: none;
+        width: 100%;
+        height: auto;
+    }
+
+    /* imagem menor no celular */
+    .inicio img {
+        width: 150px;
+    }
+
+    /* campos que estavam lado a lado viram coluna */
+    .duplo {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* campos do duplo ficam 100% largura */
+    .duplo .inputbox {
+        min-width: 100%;
+    }
+
+    .inputbox.input-rua,
+    .inputbox.input-numero {
+        width: 100%;
+    }
+
+    form {
+        padding: 0 5px;
+    }
+
+    /* label menor pra celular */
+    .inputbox label {
+        font-size: 12px;
+    }
+
+    /* inputs e selects menores */
+    .inputbox input,
+    .inputbox select {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    /* botão mantém tamanho e padding */
+    form input[type="submit"] {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+    <div id="principal">
+        <section class="inicio">
+            <h2>Quer ser um voluntário do abrigo?</h2>
+            <!-- imagem do voluntário -->
+            <img src="img/voluntario.jpg" alt="descrição da imagem">
+        </section>
+
+        <section class="final">
+            <!-- formulário que envia os dados para o banco de dados -->
+            <form method="POST" action="bancodedados">
+                <div class="form-title">Basta preencher as informações abaixo</div>
+
+                <!-- campo nome  -->
+                <div class="inputbox">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+
+                <!-- dois campos lado a lado: cpf e telefone -->
+                <div class="duplo">
+                    <div class="inputbox">
+                        <label for="cpf">CPF</label>
+                        <input type="text" id="cpf" name="cpf" required>
+                    </div>
+                    <div class="inputbox">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
+                </div>
+
+                <!-- dois campos lado a lado: rua e número -->
+                <div class="duplo">
+                    <div class="inputbox">
+                        <label for="endereco">Rua</label>
+                        <input type="text" id="endereco" name="endereco" required>
+                    </div>
+                    <div class="inputbox">
+                        <label for="numero">Número</label>
+                        <input type="tel" id="numero" name="numero" required>
+                    </div>
+                </div>
+
+                <!-- dois campos lado a lado: bairro e estado -->
+                <div class="duplo">
+                    <div class="inputbox">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" id="bairro" name="bairro" required>
+                    </div>
+                    <div class="inputbox">
+                    <label for="estado">Estado</label>
+                    <select id="estado" name="estado">
+                        <option value="">Selecione um estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    </div>
+                </div>
+
+                <!-- seleção dos abrigos disponíveis -->
+                <div class="inputbox">
+                    <label for="abrigo-disponiveis">Abrigo disponíveis, selecione um:</label>
+                    <select name="abrigo-disponiveis" id="abrigo-disponiveis">
+                        <option disabled selected>Carregando abrigos...</option>
+                    </select>
+                </div>
+
+                <!-- campo email -->
+                <div class="inputbox">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <!-- campo senha -->
+                <div class="inputbox">
+                    <label for="senha">Senha</label>
+                    <input type="text" id="senha" name="senha" required>
+                </div>
+                
+                <!-- botões: confirmar e voltar -->
+                <div class="botoes-cadastro">
+                    <input type="submit" value="Confirmar cadastro">
+                    <a href="http://127.0.0.1:5500/sobre_nos.html" class="botao-voltar">Voltar ao menu</a> 
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

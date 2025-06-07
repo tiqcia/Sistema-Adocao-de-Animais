@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar querido</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./img/logoProvisorio.png">
+</head>
+
+<style>
+
+
+* {
+    margin: 0; /* Remove espaçamentos externos */
+    padding: 0; /* Remove espaçamentos internos */
+    box-sizing: border-box; /* Garante que padding e borda não aumentem o tamanho do elemento */
+    font-family: Arial, Helvetica, sans-serif; /* Define a fonte padrão */
+}
+
+/* estilo do corpo da página */
+body {
+    background-image: url("img/imagem_fundo.png"); /* imagem de fundo */
+    background-size: 700px 400px; /* tamanho da imagem */
+    height: 100vh; /* ocupa 100% da altura da tela */
+    display: flex; 
+    justify-content: center; /* centraliza horizontalmente */
+    align-items: center; /* centraliza verticalmente */
+}
+
+/* caixa principal do formulário */
+#principal {
+    display: flex;
+    width: 90%;
+    max-width: 1000px;
+    min-height: 600px;
+    height: auto;
+    background-color: #fff; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* sombra ao redor que da um efeito 3D */
+    border-radius: 12px; 
+    overflow: hidden; /* vai ocultar conteúdos que ultrapassarem a borda */
+}
+
+/* título do formulário */
+.form-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* estilo geral do formulário */
+form {
+    max-width: 800px;
+    margin: 0 auto; /* centraliza horizontalmente */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* caixa com informações do formulário */
+.final {
+    background-color: #ffe7e7; 
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); 
+}
+
+.final p {
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 40px 0; /* espaçamento interno acima e sem espaçamento em baixo */
+}
+
+/* títulos principais */
+h1, h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* grupo de cada campo de entrada */
+.inputbox {
+    margin-bottom: 15px; /* espaço entre os campos */
+    display: flex;
+    flex-direction: column;
+}
+
+/* label de cada campo */
+.inputbox label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* campos de texto e select */
+.inputbox input,
+.inputbox select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* grupo para dois campos lado a lado */
+.duplo {
+    display: flex;
+    gap: 20px; 
+}
+
+/* permite que os dois campos ocupem o mesmo espaço */
+.duplo .inputbox {
+    flex: 1;
+}
+
+/* grupo de botões de rádio */
+.radio-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* area dos botões de envio e voltar */
+.botoes-cadastro {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap; /* quebra para outra linha se não couber */
+}
+
+/* botões estilizados */
+.botoes-cadastro input[type="submit"],
+.botoes-cadastro a {
+    background-color: #e57373;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none; /* remove sublinhado dos links */
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* efeito ao passar o mouse */
+}
+
+/* efeito de hover nos botões */
+.botoes-cadastro input[type="submit"]:hover,
+.botoes-cadastro a:hover {
+    background-color: #d84343; 
+}
+
+/* transforma link em botão */
+.botoes-cadastro a {
+    display: inline-block;
+    text-align: center;
+}
+
+/* responsividade para celular */
+@media (max-width: 600px) {
+    .duplo {
+        flex-direction: column; /* Empilha os campos no celular */
+    }
+}
+
+</style>
+
+<body>
+
+    <section class="final">
+        <form method="post" action="bancodedados">
+            
+            <p>Cadastre seu querido aqui!</p>
+
+            <!-- grupo de botões de rádio para tipo de animal -->
+            <div class="radio-group">
+                <input type="radio" id="animal-cachorro" name="animal" value="cachorro">
+                <label for="animal-cachorro">Cachorro</label>
+
+                <input type="radio" id="animal-gato" name="animal" value="gato">
+                <label for="animal-gato">Gato</label>
+
+                <input type="radio" id="animal-hamster" name="animal" value="hamster">
+                <label for="animal-hamster">Hamster</label>
+            </div>
+
+            <!-- nome e data de nascimento lado a lado -->
+            <div class="duplo">
+                <div class="inputbox">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="inputbox">
+                    <label for="data_nas">Data de nascimento</label>
+                    <input type="date" id="data_nas" name="data_nas" required>
+                </div>
+            </div>
+
+            <!-- pergunta se está vacinado -->
+            <div class="inputbox">
+                <label>Vacinado?</label>
+                <div class="radio-group">
+                    <input type="radio" id="vacinado-sim" name="vacinado" value="sim">
+                    <label for="vacinado-sim">Sim</label>
+
+                    <input type="radio" id="vacinado-nao" name="vacinado" value="nao">
+                    <label for="vacinado-nao">Não</label>
+                </div>
+            </div>
+
+            <!-- campo para digitar as vacinas -->
+            <div class="inputbox">
+                <label for="vacina">Se sim, digite quais</label>
+                <input type="text" id="vacina" name="vacina">
+            </div>
+
+            <!-- sexo do animal -->
+            <div class="radio-group">
+                <input type="radio" id="sexo-femea" name="sexo" value="femea">
+                <label for="sexo-femea">Fêmea</label>
+
+                <input type="radio" id="sexo-macho" name="sexo" value="macho">
+                <label for="sexo-macho">Macho</label>
+            </div>
+
+            <!-- botões finais da página -->
+            <div class="botoes-cadastro">
+                <input type="submit" value="Confirmar Cadastro">
+                <a href="http://127.0.0.1:5500/sobre_nos.html" class="botao-voltar">Voltar ao Menu</a> 
+            </div>
+        </form>
+    </section>
+</body>
+</html>

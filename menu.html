@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menu</title>
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: arial, helvetica, sans-serif;
+    }
+
+    /* container principal que centraliza o conteúdo horizontalmente */
+    .tela_principal {
+        display: flex;
+        justify-content: center;
+        padding: 0 40px;
+    }
+
+    /* container que mantém o menu e os botões alinhados e espaçados */
+    .menu_container {
+        display: flex;
+        align-items: center;
+        gap: 30px; /* espaço entre menu e botões */
+        justify-content: space-between;
+    }
+
+    /* lista do menu em linha com espaçamento */
+    .menu {
+        list-style: none;
+        display: flex;
+        gap: 5px; 
+        flex-wrap: wrap;
+        flex: 1; /* ocupa o máximo possível dentro do container */
+    }
+
+    /* cada item da lista do menu */
+    .menu li {
+        position: relative; /* para possíveis posicionamentos absolutos */
+    }
+
+    /* link do menu: bloco clicável com espaçamento e cor */
+    .menu li a {
+        display: block;
+        padding: 15px 20px;
+        font-size: 1rem;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease; /* efeito suave para hover */
+    }
+
+    /* efeito hover nos links do menu: muda cor de fundo e arredonda */
+    .menu li a:hover {
+        background-color: #992b5a;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    /* container dos botões à direita */
+    .botoes {
+        display: flex;
+        align-items: end; /* alinha os botões na base */
+        gap: 20px; 
+    }
+
+    /* estilo dos links que são botões */
+    .botoes a {
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        color: #fff;
+        text-decoration: none;
+        transition: 0.3s ease;
+    }
+
+    /* botão entrar com cor específica */
+    .btn-entrar {
+        background-color: #6495a5;
+    }
+
+    /* botão cadastrar com cor diferente */
+    .btn-cadastro {
+        background-color: #457090;
+    }
+</style>
+
+</head>
+
+<body>
+    <!-- navegação principal com menu e botões -->
+    <nav class="tela_principal">
+        <div class="menu_container">
+            <!-- lista do menu com links para as páginas -->
+            <ul class="menu">
+                <li><a href="http://127.0.0.1:5500/sobre_nos.html">Sobre nós</a></li>
+                <li><a href="http://127.0.0.1:5500/queridos_disponiveis.html">Conheça os queridos</a></li>
+                <li><a href="http://127.0.0.1:5500/cadastrar_querido.html">Cadastrar querido</a></li>
+                <li><a href="http://127.0.0.1:5500/cadastrar_abrigo.html">Cadastrar abrigo</a></li>
+                <li><a href="http://127.0.0.1:5500/cadastrar_voluntario.html">Cadastro voluntário</a></li>
+            </ul>
+
+            <!-- área dos botões de entrar e cadastrar -->
+            <div class="botoes">
+                <a href="http://127.0.0.1:5500/tela_login.html" class="btn-entrar">Entrar</a>
+                <a href="http://127.0.0.1:5500/tela_cadastro.html" class="btn-cadastro">Cadastrar</a>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
