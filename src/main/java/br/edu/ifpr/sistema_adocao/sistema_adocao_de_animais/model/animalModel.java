@@ -23,27 +23,28 @@ import java.io.Serializable;
 @Entity
 @Table(name = "animal_tbl")
 public class animalModel implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    // chave primária 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID_animal;
 
-    // atributos
-    @Column (name = "nome", nullable = false)
-    private String nome; 
+    @Column(nullable = false)
+    private String nome;
 
-    @Column (name = "idade", nullable = false )
+    @Column(nullable = false)
     private Integer idade;
 
-    @Column (name = "sexo", nullable = false)
+    @Column(nullable = false)
     private String sexo;
 
-    @Column (name = "status", nullable = false)
+    @Column(nullable = false)
     private String status;
 
-    @Column (name = "especies", nullable = false)
+    @Column(nullable = false)
     private String especies;
-    
+
+    @Lob
+    @Column(name = "imagem", columnDefinition = "LONGBLOB")
+    private byte[] imagem;
+
 }
+

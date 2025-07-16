@@ -64,22 +64,82 @@
         .btn-cadastro {
             background-color: #457090;
         }
+
+        .tela-principal {
+        display: flex;
+        justify-content: center;
+        padding: 0 40px;
+        background-color: #f9f9f9;
+        }
+
+        .conteudo-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px;
+        padding: 20px 0;
+        }
+
+        .lista-menu {
+        list-style: none;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        flex: 1;
+        }
+
+        .lista-menu li a {
+        display: block;
+        padding: 10px 16px;
+        font-size: 1rem;
+        color: #444;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        }
+
+        .lista-menu li a:hover {
+        background-color: #faedec;
+        color: #444;
+        border-radius: 5px;
+        }
+
+        .area-botoes {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        }
+
+        .area-botoes a {
+        padding: 8px 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        color: #fff;
+        text-decoration: none;
+        transition: 0.3s ease;
+        }
+
+        .botao-entrar {
+        background-color: #6495a5;
+        }
+
+        .botao-cadastro {
+        background-color: #457090;
+        }
+
     </style>
 </head>
 <body>
-        <nav class="tela_principal">
-            <div class="menu_container">
-                <ul class="menu">
-                    <li><a th:href="@{/sobre}">Sobre nós</a></li>
-                    <li><a th:href="@{/queridos}">Conheça os queridos</a></li>
-                    <li><a th:href="@{/animais/cadastrar}">Cadastrar querido</a></li>
-                    <li><a th:href="@{/abrigo/cadastrar}">Cadastrar abrigo</a></li>
-                    <li><a th:href="@{/voluntario/cadastrar}">Cadastro voluntário</a></li>
-                </ul>
-                <div class="botoes">
-                    <a th:href="@{/login}" class="btn-entrar">Entrar</a>
-                    <a th:href="@{/cadastros}" class="btn-cadastro">Cadastrar</a>
-                </div>
+        <nav class="tela-principal">
+            <div class="conteudo-menu">
+            <ul class="lista-menu">
+                <li><a href="#">Conheça os queridos</a></li>
+                <li><a href="#">Cadastrar querido</a></li>
+            </ul>
+            <div class="area-botoes">
+                <a href="#" class="botao-entrar">Entrar</a>
+                <a href="#" class="botao-cadastro">Cadastrar</a>
+            </div>
             </div>
         </nav>
 </body>

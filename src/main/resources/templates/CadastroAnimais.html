@@ -166,9 +166,9 @@ h1, h2 {
 <body>
 
     <section class="final">
-        <form th:action="@{/animais/cadastrar}" th:object="${animalModel}" method="post">
-    
+        <form th:action="@{/animais/cadastrar}"  th:object="${animalModel}" method="post" enctype="multipart/form-data">
 
+    
             <p>Cadastre seu querido aqui!</p>
 
             <!-- campo da espécie  -->
@@ -194,7 +194,7 @@ h1, h2 {
                 <!-- campo de idade -->
                 <div class="inputbox">
                     <label for="idade">Idade</label>
-                    <input type="number" th:field="*{Idade}" id="idade" min="0" required />
+                    <input type="number" th:field="*{idade}" id="idade" min="0" required />
                 </div>
             </div>
 
@@ -218,12 +218,19 @@ h1, h2 {
                 <label for="status-adotado">Adotado</label>
             </div>
 
-        <!-- botões -->
-        <div class="botoes-cadastro">
-            <input type="submit" value="Confirmar Cadastro" />
-            <a th:href="@{/}" class="botao-voltar">Voltar ao Menu</a>
-        </div>
-    </form>
+            <!-- campo de imagem -->
+            <div class="inputbox">
+                <label for="imagem">Foto do animal:</label>
+                <input type="file" name="imagem" id="imagem" accept="image/*" required />
+            </div>
+
+            <!-- botões -->
+            <div class="botoes-cadastro">
+                <input type="submit" value="Confirmar Cadastro" />
+                <a th:href="@{/}" class="botao-voltar">Voltar ao Menu</a>
+            </div>
+        </form>
+
 </section>
 
 </body>

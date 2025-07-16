@@ -2,7 +2,6 @@ package br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.controller;
 
 import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.model.cadastroModel;
 import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.repository.cadastroRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,4 +29,5 @@ public class cadastroController {
         model.addAttribute("cadastroModel", new cadastroModel()); // limpa o formulário
         return "Cadastro"; 
     }
+
 }

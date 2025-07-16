@@ -8,9 +8,7 @@ public class menuController {
 
     @GetMapping("/menu")
     public String exibirMenu() {
-        return "menu"; // nome do arquivo menu.html
+        return "menu";
     }
 }
  
-    
-

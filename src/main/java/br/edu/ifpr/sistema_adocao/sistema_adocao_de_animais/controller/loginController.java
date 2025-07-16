@@ -3,6 +3,7 @@ package br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.controller;
 import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.model.loginModel;
 import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.model.cadastroModel;
 import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.repository.cadastroRepository;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,18 +25,26 @@ public class loginController {
 
     //processa o login
     @PostMapping("/login")
-    public String processarLogin(@ModelAttribute loginModel loginModel, Model model) {
-        //busca do email e da senha
+    public String processarLogin(@ModelAttribute loginModel loginModel, Model model, HttpSession session) {
         cadastroModel usuario = cadastroRepository.findByEmailAndSenha(
             loginModel.getEmail(), loginModel.getSenha()
         );
 
         if (usuario != null) {
-            //login válido
-            model.addAttribute("usuario", usuario); //adiciona o usuário ao modelo
-            return "redirect:/"; //redireciona para a página inicial
+            //salva o usuário na sessão
+            session.setAttribute("usuario", usuario.getNome()); 
+
+            return "redirect:/catalogo"; 
         } else {
-            return "login"; //retorna para a tela de login
+            model.addAttribute("erro", "Email ou senha inválidos");
+            return "login";
         }
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); //limpa os dados da sessão
+        return "redirect:/login"; 
+    }
+    
 }

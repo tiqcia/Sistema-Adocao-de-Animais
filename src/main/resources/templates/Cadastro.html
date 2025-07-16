@@ -1,322 +1,298 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastrar</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./img/logoProvisorio.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastrar</title>
+  <link rel="shortcut icon" type="image/x-icon" href="./img/logoProvisorio.png" />
     
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
-    background-color: #f8ecd4;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Container principal */
-#principal {
-    display: flex;
-    width: 90%;
-    max-width: 1000px;
-    min-height: 600px;
-    height: auto;
-    background-color: #fff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-/* Seção esquerda */
-.inicio {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.inicio h2 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
-}
-
-.inicio img {
-    width: 350px;
-    height: auto;
-    border-radius: 10px;
-}
-
-/* Seção direita */
-.final {
-    flex: 1;
-    padding: 40px 30px;
-    background-color: #E4C5B0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.form-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Formulário */
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 100%;
-    padding: 0 10px;
-}
-
-/* Campos de entrada */
-.inputbox {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    margin-bottom: 12px;
-}
-
-.inputbox label {
-    margin-bottom: 4px;
-    font-weight: normal;
-    font-size: 13px;
-}
-
-.inputbox input,
-.inputbox select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 12px;
-}
-
-/* Campos lado a lado */
-.duplo {
-    display: flex;
-    gap: 12px;
-    width: 100%;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-}
-
-.duplo .inputbox {
-    flex: 1;
-    min-width: 20%;
-}
-
-/* Botão */
-form input[type="submit"] {
-    width: 30%;
-    padding: 10px;
-    background-color: #d28c8c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-form input[type="submit"]:hover {
-    background-color: #c47676;
-}
-
-.botoes {
-    display: flex;
-    gap: 12px;
-    margin-top: 20px;
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.botoes input[type="submit"],
-.botoes a.botao-voltar {
-    padding: 10px 20px;
-    background-color: #d28c8c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.3s;
-    min-width: 160px;
-}
-
-.botoes input[type="submit"]:hover,
-.botoes a.botao-voltar:hover {
-    background-color: #c47676;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    #principal {
-        flex-direction: column;
-        height: auto;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
-    .inicio,
-    .final {
-        flex: none;
-        width: 100%;
+    body {
+        background-color: #f8ecd4;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #principal {
+        display: flex;
+        width: 90%;
+        max-width: 1000px;
+        min-height: 600px;
         height: auto;
+        background-color: #fff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .inicio {
+        flex: 1;
+        background-color: #ffffff;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .inicio h2 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
     }
 
     .inicio img {
-        width: 150px;
+        width: 350px;
+        height: auto;
+        border-radius: 10px;
     }
 
-    .duplo {
+    .final {
+        flex: 1;
+        padding: 40px 30px;
+        background-color: #E4C5B0;
+        display: flex;
         flex-direction: column;
-        gap: 8px;
+        justify-content: center;
+        align-items: center;
     }
 
-    .duplo .inputbox {
-        min-width: 100%;
-    }
-
-    .inputbox.input-rua,
-    .inputbox.input-numero {
-        width: 100%;
+    .form-title {
+        font-size: 1.5em;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
     }
 
     form {
-        padding: 0 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .inputbox {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-bottom: 12px;
     }
 
     .inputbox label {
-        font-size: 12px;
+        margin-bottom: 4px;
+        font-weight: normal;
+        font-size: 13px;
     }
 
     .inputbox input,
     .inputbox select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
         font-size: 12px;
-        padding: 6px;
+    }
+
+    .duplo {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+    }
+
+    .duplo .inputbox {
+        flex: 1;
+        min-width: 20%;
     }
 
     form input[type="submit"] {
-        font-size: 14px;
+        width: 30%;
         padding: 10px;
+        background-color: #d28c8c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.3s;
     }
-}
+
+    form input[type="submit"]:hover {
+        background-color: #c47676;
+    }
+
+    .botoes {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .botoes input[type="submit"],
+    .botoes a.botao-voltar {
+        padding: 10px 20px;
+        background-color: #d28c8c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        text-decoration: none;
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.3s;
+        min-width: 160px;
+    }
+
+    .botoes input[type="submit"]:hover,
+    .botoes a.botao-voltar:hover {
+        background-color: #c47676;
+    }
+
+    @media (max-width: 768px) {
+        #principal {
+            flex-direction: column;
+            height: auto;
+        }
+
+        .inicio,
+        .final {
+            flex: none;
+            width: 100%;
+            height: auto;
+        }
+
+        .inicio img {
+            width: 150px;
+        }
+
+        .duplo {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .duplo .inputbox {
+            min-width: 100%;
+        }
+
+        .inputbox.input-rua,
+        .inputbox.input-numero {
+            width: 100%;
+        }
+
+        form {
+            padding: 0 5px;
+        }
+
+        .inputbox label {
+            font-size: 12px;
+        }
+
+        .inputbox input,
+        .inputbox select {
+            font-size: 12px;
+            padding: 6px;
+        }
+
+        form input[type="submit"] {
+            font-size: 14px;
+            padding: 10px;
+        }
+    }
 
 </style>
 </head>
 
 <body>
+  <div id="principal">
     <section class="inicio">
-                    
-            <h2>Falta pouco para você ter seu querido!</h2>
-            <img src="img/tela_cadastro4.jpg" alt="Descrição da imagem" />
-        </section>
+      <h2>Falta pouco para você ter seu querido!</h2>
+      <img src="img/tela_cadastro4.jpg" alt="Descrição da imagem" />
+    </section>
 
-        <section class="final">
-            <form th:action="@{/cadastros}" th:object="${cadastroModel}" method="post" id="formCadastro">
-                <div class="form-title">Cadastre-se aqui</div>
+    <section class="final">
+      <form th:action="@{/cadastros}" th:object="${cadastroModel}" method="post" id="formCadastro">
+        <div class="form-title">Cadastre-se aqui</div>
 
-                <!-- campo de nome -->
-                <div class="inputbox">
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" th:field="*{nome}" id="nome" required />
-                </div>
+        <div class="inputbox">
+          <label for="nome">Nome Completo</label>
+          <input type="text" th:field="*{nome}" id="nome" required />
+        </div>
 
-                <!-- campo de CPF -->
-                <div class="duplo">
-                    <div class="inputbox">
-                        <label for="cpf">CPF</label>
-                        <input type="text" th:field="*{CPF}" id="cpf" required />
-                    </div>
+        <div class="duplo">
+          <div class="inputbox">
+            <label for="cpf">CPF</label>
+            <input type="text" th:field="*{CPF}" id="cpf" required />
+          </div>
+          <div class="inputbox">
+            <label for="data_nas">Data de nascimento</label>
+            <input type="date" th:field="*{data_nas}" id="data_nas" required />
+          </div>
+        </div>
 
-                    <!-- campo de data de nascimento -->
-                    <div class="inputbox">
-                        <label for="data_nas">Data de nascimento</label>
-                        <input type="date" th:field="*{data_nas}" id="data_nas" required />
-                    </div>
-                </div>
-                
-                <!-- campo de telefone -->
-                <div class="duplo">
-                    <div class="inputbox">
-                        <label for="telefone">Telefone 1</label>
-                        <input type="tel" th:field="*{numTelefone1}" id="numTelefone1" required />
-                    </div>
-                
-                    <!-- campo de telefone 2 -->
-                    <div class="inputbox">
-                        <label for="telefone2">Telefone 2</label>
-                        <input type="tel" th:field="*{numTelefone2}" id="numTelefone2" />
-                    </div>
-                </div>
+        <div class="duplo">
+          <div class="inputbox">
+            <label for="telefone">Telefone 1</label>
+            <input type="tel" th:field="*{numTelefone1}" id="numTelefone1" required />
+          </div>
+          <div class="inputbox">
+            <label for="telefone2">Telefone 2</label>
+            <input type="tel" th:field="*{numTelefone2}" id="numTelefone2" />
+          </div>
+        </div>
 
-                <!-- campo de CEP-->
-                <div class="duplo">
-                    <div class="inputbox">
-                        <label for="cep">CEP</label>
-                        <input type="text" th:field="*{CEP}" id="CEP" required />
-                    </div>
+        <div class="duplo">
+          <div class="inputbox">
+            <label for="cep">CEP</label>
+            <input type="text" th:field="*{CEP}" id="CEP" required />
+          </div>
+          <div class="inputbox">
+            <label for="numero">Número</label>
+            <input type="text" th:field="*{numero}" id="numero" required />
+          </div>
+        </div>
 
-                    <!-- campo de número -->
-                    <div class="inputbox">
-                        <label for="numero">Número</label>
-                        <input type="text" th:field="*{numero}" id="numero" required />
-                    </div>
-                </div>
+        <div class="duplo">
+          <div class="inputbox">
+            <label for="rua">Rua</label>
+            <input type="text" th:field="*{rua}" id="rua" required />
+          </div>
+          <div class="inputbox">
+            <label for="bairro">Bairro</label>
+            <input type="text" th:field="*{bairro}" id="bairro" required />
+          </div>
+        </div>
 
-                <!-- campo de rua -->
-                <div class="duplo">
-                    <div class="inputbox">
-                        <label for="rua">Rua</label>
-                        <input type="text" th:field="*{rua}" id="rua" required />
-                    </div>
+        <div class="inputbox">
+          <label for="email">Email</label>
+          <input type="email" th:field="*{email}" id="email" required />
+        </div>
 
-                    <!-- campo de bairro -->
-                    <div class="inputbox">
-                        <label for="bairro">Bairro</label>
-                        <input type="text" th:field="*{bairro}" id="bairro" required />
-                    </div>
-                </div>
+        <div class="inputbox">
+          <label for="senha">Senha</label>
+          <input type="password" th:field="*{senha}" id="senha" required />
+        </div>
 
-                <!-- campo de email-->
-                <div class="inputbox">
-                    <label for="email">Email</label>
-                    <input type="email" th:field="*{email}" id="email" required />
-                </div>
-
-                <!-- campo de senha -->
-                <div class="inputbox">
-                    <label for="senha">Senha</label>
-                    <input type="password" th:field="*{senha}" id="senha" required />
-                </div>
-
-                <!-- botões -->
-                <div class="botoes">
-                    <input type="submit" value="Confirmar Cadastro" />
-                    <a th:href="@{/}" class="botao-voltar">Voltar ao Menu</a>
-                </div>
-            </form>
-        </section>
-    </div>
+        <div class="botoes">
+          <input type="submit" value="Confirmar Cadastro" />
+          <a th:href="@{/}" class="botao-voltar">Voltar ao Menu</a>
+        </div>
+      </form>
+    </section>
+  </div>
 </body>
 </html>

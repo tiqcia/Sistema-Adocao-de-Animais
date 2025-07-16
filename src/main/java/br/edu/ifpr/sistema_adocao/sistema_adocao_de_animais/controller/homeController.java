@@ -8,6 +8,7 @@ public class homeController {
 
     @GetMapping("/")
     public String paginaInicial() {
-        return "home"; // retorna o home.html como página inicial
+        //redireciona para a rota que exibe o catálogo
+        return "redirect:/catalogo";
     }
 }
