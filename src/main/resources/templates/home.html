@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Fragmento Menu</title>
+    <style>
+        /* Seus estilos do menu aqui */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: arial, helvetica, sans-serif;
+        }
+        .tela_principal {
+            display: flex;
+            justify-content: center;
+            padding: 0 40px;
+        }
+        .menu_container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            justify-content: space-between;
+        }
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 5px; 
+            flex-wrap: wrap;
+            flex: 1;
+        }
+        .menu li {
+            position: relative;
+        }
+        .menu li a {
+            display: block;
+            padding: 15px 20px;
+            font-size: 1rem;
+            color: #444;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .menu li a:hover {
+            background-color: #FAEDEC;
+            color: #444;
+            border-radius: 5px;
+        }
+        .botoes {
+            display: flex;
+            align-items: end;
+            gap: 20px; 
+        }
+        .botoes a {
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #fff;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+        .btn-entrar {
+            background-color: #6495a5;
+        }
+        .btn-cadastro {
+            background-color: #457090;
+        }
+    </style>
+</head>
+<body>
+        <nav class="tela_principal">
+            <div class="menu_container">
+                <ul class="menu">
+                    <li><a th:href="@{/sobre}">Sobre nós</a></li>
+                    <li><a th:href="@{/queridos}">Conheça os queridos</a></li>
+                    <li><a th:href="@{/animais/cadastrar}">Cadastrar querido</a></li>
+                    <li><a th:href="@{/abrigo/cadastrar}">Cadastrar abrigo</a></li>
+                    <li><a th:href="@{/voluntario/cadastrar}">Cadastro voluntário</a></li>
+                </ul>
+                <div class="botoes">
+                    <a th:href="@{/login}" class="btn-entrar">Entrar</a>
+                    <a th:href="@{/cadastros}" class="btn-cadastro">Cadastrar</a>
+                </div>
+            </div>
+        </nav>
+</body>
+</html>

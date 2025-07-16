@@ -10,7 +10,7 @@ public class OlaMundoController {
     @GetMapping("/teste")
     public String home(Model model){
        // model.addAttribute("mensagem", "que iso");
-        return "index";
+        return "telaCadastro";
     }
 
 }

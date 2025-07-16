@@ -9,7 +9,6 @@ import lombok.ToString;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import jakarta.validation.constraints.AssertTrue;
 
 @Getter
@@ -41,7 +40,7 @@ public class abrigoModel implements Serializable {
     @Column(name = "Nome", nullable = false)
     private String Nome;
 
-    @Column(name = "Endereço", nullable = false)
+    @Column(name = "Endereco", nullable = false)
     private String Endereço;
 
     @Column(name = "Telefone", nullable = false)
@@ -53,8 +52,6 @@ public class abrigoModel implements Serializable {
    //@ElementCollection 
    //private List<String> animal_tbl; cria uma tabela auxiliar no BD, abordagem de um pra muitos
 
-   @OneToMany (mappedBy = "abrigo_tbl", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-   private List<animalModel> animais;
 
    //vai ser responsável por conferir se foi inserido o cpf ou cnpj, caso contrário ele não salva as infomações
    @AssertTrue(message= "CPF ou CNPJ devem ser preenchidos!")

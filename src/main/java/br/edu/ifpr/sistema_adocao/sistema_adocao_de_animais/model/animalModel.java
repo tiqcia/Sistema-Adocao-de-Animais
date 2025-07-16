@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @EqualsAndHashCode
 @Builder
@@ -24,27 +26,24 @@ public class animalModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // chave primária 
-    @Id 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID_animal;
 
     // atributos
-    @Column (name = "Nome", nullable = false)
-    private String Nome; 
+    @Column (name = "nome", nullable = false)
+    private String nome; 
 
-    @Column (name = "Idade", nullable = false )
-    private Integer Idade;
+    @Column (name = "idade", nullable = false )
+    private Integer idade;
 
-    @Column (name = "Sexo", nullable = false)
-    private String Sexo;
-    
-    @Column (name = "Status", nullable = false)
-    private String Status;
+    @Column (name = "sexo", nullable = false)
+    private String sexo;
 
-    @Column (name = "Espécies", nullable = false)
-    private String Especies;
+    @Column (name = "status", nullable = false)
+    private String status;
 
-    @ManyToOne
-    @JoinColumn(name = "idLong", nullable = false)
-    private abrigoModel abrigo;
+    @Column (name = "especies", nullable = false)
+    private String especies;
     
 }
