@@ -22,7 +22,7 @@ import java.util.Optional;
 public class solicitacaoAdocaoController {
 
     @Autowired
-    private solicitacaoAdocaoRepository solicitacaoRepo;
+    private solicitacaoAdocaoRepository solicitacaoAdocaoRepository ;
 
     @Autowired
     private animalRepository animalRepo;
@@ -47,7 +47,7 @@ public class solicitacaoAdocaoController {
         solicitacao.setTipo(adotante.getTipo());  // por exemplo
         solicitacao.setDataSolicitacao(LocalDate.now());
 
-        solicitacaoRepo.save(solicitacao);
+        solicitacaoAdocaoRepository .save(solicitacao);
 
         return "redirect:/catalogo";
     }
@@ -55,19 +55,20 @@ public class solicitacaoAdocaoController {
 
     @GetMapping("/pendentes")
     public String listarPendentes(Model model) {
-        List<solicitacaoAdocaoModel> pendentes = solicitacaoRepo.findByStatus("PENDENTE");
+        List<solicitacaoAdocaoModel> pendentes = solicitacaoAdocaoRepository .findByStatus("PENDENTE");
         model.addAttribute("solicitacoes", pendentes);
         return "telaSolicitacoes"; 
+        
     }
 
     @PostMapping("/aceitar/{id}")
     public String aceitar(@PathVariable Long id) {
-        Optional<solicitacaoAdocaoModel> solicitacaoOpt = solicitacaoRepo.findById(id);
+        Optional<solicitacaoAdocaoModel> solicitacaoOpt = solicitacaoAdocaoRepository .findById(id);
 
         if (solicitacaoOpt.isPresent()) {
             solicitacaoAdocaoModel solicitacao = solicitacaoOpt.get();
             solicitacao.setStatus("ACEITO");
-            solicitacaoRepo.save(solicitacao);
+            solicitacaoAdocaoRepository .save(solicitacao);
 
             animalModel animal = solicitacao.getAnimal();
             animal.setStatus("ADOTADO");
@@ -80,10 +81,10 @@ public class solicitacaoAdocaoController {
 
     @PostMapping("/recusar/{id}")
     public String recusar(@PathVariable Long id) {
-        solicitacaoAdocaoModel solicitacao = solicitacaoRepo.findById(id).orElse(null);
+        solicitacaoAdocaoModel solicitacao = solicitacaoAdocaoRepository .findById(id).orElse(null);
         if (solicitacao != null) {
             solicitacao.setStatus("RECUSADA");
-            solicitacaoRepo.save(solicitacao);
+            solicitacaoAdocaoRepository .save(solicitacao);
         }
         return "redirect:/solicitacoes/pendentes";
     }

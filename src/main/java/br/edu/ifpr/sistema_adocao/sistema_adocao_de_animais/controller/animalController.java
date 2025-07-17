@@ -28,7 +28,7 @@ public class animalController {
         }
 
         model.addAttribute("animalModel", new animalModel());
-        return "CadastroAnimais"; // nome do template do formulário
+        return "CadastroAnimais"; 
     }
 
     //recebe os dados do formulario e salva no banco de dados através do repository

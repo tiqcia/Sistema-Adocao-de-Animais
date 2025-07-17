@@ -1,6 +1,8 @@
 package br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -28,14 +30,14 @@ public class cadastroModel implements Serializable{
 
     //Chave primária
     @Id
-    private String CPF;
+    private Integer CPF;
 
     //Atributos
     @Column(name = "nome", nullable = false)
     private String nome;
 
     @Column(name="data_nas", nullable = false)
-    private String data_nas;
+    private LocalDate data_nas;
 
     @Column(name="numTelefone1", nullable = false)
     private String numTelefone1;
@@ -77,11 +79,11 @@ public class cadastroModel implements Serializable{
         this.tipo = tipo;
     }
 
-    public String getCPF() {
+    public Integer getCPF() {
         return CPF;
     }
 
-    public void setCPF(String CPF) {
+    public void setCPF(Integer CPF) {
         this.CPF = CPF;
     }
 
@@ -93,11 +95,11 @@ public class cadastroModel implements Serializable{
         this.nome = nome;
     }
 
-    public String getData_nas() {
+    public LocalDate getData_nas() {
         return data_nas;
     }
 
-    public void setData_nas(String data_nas) {
+    public void setData_nas(LocalDate data_nas) {
         this.data_nas = data_nas;
     }
 

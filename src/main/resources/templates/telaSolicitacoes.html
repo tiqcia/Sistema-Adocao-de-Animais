@@ -1,118 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Solicitações de Adoção</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #406B8D;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container-solicitacoes {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container-solicitacoes h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #406B8D;
+      margin-bottom: 30px;
+    }
+
+    .solicitacao {
+      background-color: #f0f6fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .solicitacao p {
+      margin: 8px 0;
+      font-size: 1rem;
+    }
+
+    .solicitacao strong {
+      color: #333;
+    }
+
+    .acoes {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .btn-aceitar, .btn-recusar {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 0 8px;
+    }
+
+    .btn-aceitar {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .btn-aceitar:hover {
+      background-color: #3e8e41;
+    }
+
+    .btn-recusar {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .btn-recusar:hover {
+      background-color: #c62828;
+    }
+
+    .mensagem-vazia {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #999;
+      padding: 50px 0;
+    }
+
+    .voltar {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .voltar a {
+      text-decoration: none;
+      color: #406B8D;
+      font-weight: bold;
+    }
+
+    .voltar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
 <body>
-    <!-- Navegação superior -->
-  <nav class="navegacao-principal">
-    <div class="conteudo-menu">
-      <ul class="lista-menu">
-          <li><a th:href="@{/catalogo}">Conheça os queridos</a></li>
+  <div class="container-solicitacoes">
+    <h2>Solicitações de Adoção</h2>
 
-          <li th:if="${tipo == 'FUNCIONARIO'}">
-              <a th:href="@{/animais/cadastrar}">Cadastrar querido</a>
-          </li>
+    <div th:if="${solicitacoes.size() > 0}">
+      <div th:each="solicitacao : ${solicitacoes}" class="solicitacao">
+        <p><strong>Nome do Adotante:</strong> <span th:text="${solicitacao.adotante != null ? solicitacao.adotante.nome : 'Sem adotante'}"></span></p>
+        <p><strong>Animal:</strong> <span th:text="${solicitacao.animal != null ? solicitacao.animal.nome : 'Sem animal'}"></span> (<span th:text="${solicitacao.animal != null ? solicitacao.animal.especies : 'Sem espécie'}"></span>)</p>
+        <p><strong>Data da Solicitação:</strong> <span th:text="${#temporals.format(solicitacao.dataSolicitacao, 'dd/MM/yyyy')}"></span></p>
+        <p><strong>Status:</strong> <span th:text="${solicitacao.status}"></span></p>
 
-          <li th:if="${tipo == 'FUNCIONARIO'}">
-              <a th:href="@{/solicitacoes/pendentes}">Pendências de Adoção</a>
-          </li>
-      </ul>
-
-      <div class="area-botoes">
-        <!-- Quando o usuário está logado -->
-        <div th:if="${username != null}" style="display: flex; align-items: center; gap: 10px;">
-          <span>Olá, <strong th:text="${username}">Usuário</strong>!</span>
-          <a th:href="@{/logout}" class="botao-logout">Sair</a>
-        </div>
-
-        <!-- Quando o usuário NÃO está logado -->
-        <div th:if="${username == null}" style="display: flex; gap: 10px;">
-          <a th:href="@{/login}" class="botao-entrar">Entrar</a>
-          <a th:href="@{/cadastros}" class="botao-cadastro">Cadastrar</a>
+        <div class="acoes">
+          <form th:action="@{/solicitacoes/aceitar/{id}(id=${solicitacao.id})}" method="post" style="display:inline-block;">
+            <button type="submit" class="btn-aceitar">Aceitar</button>
+          </form>
+          <form th:action="@{/solicitacoes/recusar/{id}(id=${solicitacao.id})}" method="post" style="display:inline-block;">
+            <button type="submit" class="btn-recusar">Recusar</button>
+          </form>
         </div>
       </div>
     </div>
-  </nav>
 
-<!-- Banner colorido -->
-<div class="banner-destaque">
-</div>
+    <p class="mensagem-vazia" th:if="${solicitacoes.size() == 0}">Nenhuma solicitação encontrada.</p>
 
-<!-- Conteúdo principal -->
-<main>
-  <section id="secao-catalogo">
-    <div class="conteudo-catalogo">
-
-      <!-- Coluna esquerda: cards -->
-      <div class="coluna-esquerda">
-
-        <div class="cartoes-catalogo">
-        <div class="cartao-produto" th:each="animal : ${animais}">
-            <div class="cartao-topo">
-            <img th:src="@{/catalogo/imagem/{id}(id=${animal.ID_animal})}" alt="Imagem do animal" />
-            </div>
-            <div class="cartao-base">
-            <h3 th:text="${animal.especies}">Espécie</h3>
-            <h4 th:text="${animal.sexo}">Sexo</h4>
-            <h4 th:text="${animal.idade}">Idade</h4>
-            <h4 th:text="${animal.status}">Status</h4>
-
-            <!-- Botão de interesse dentro do card -->
-            <form th:action="@{/solicitacoes/interesse/{idAnimal}(idAnimal=${animal.ID_animal})}" method="post">
-                <button type="submit" class="btn-interesse">Indicar Interesse</button>
-            </form>
-            </div>
-        </div>
-        </div>
-  </section>
-</main>
-</body> <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Pendências de Adoção</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
-        th { background-color: #f2f2f2; }
-        button { margin-right: 5px; padding: 6px 12px; cursor: pointer; }
-        .btn-aceitar { background-color: #4CAF50; color: white; border: none; }
-        .btn-recusar { background-color: #f44336; color: white; border: none; }
-    </style>
-</head>
-<body>
-
-<h1>Pendências de Solicitações de Adoção</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Adotante</th>
-      <th>Animal</th>
-      <th>Espécie</th>
-      <th>Status</th>
-      <th>Data da Solicitação</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr th:each="solicitacao : ${solicitacoes}">
-      <td th:text="${solicitacao.adotante != null ? solicitacao.adotante.nome : 'Sem adotante'}">Nome do Adotante</td>
-      <td th:text="${solicitacao.animal != null ? solicitacao.animal.nome : 'Sem animal'}">Nome do Animal</td>
-      <td th:text="${solicitacao.animal != null ? solicitacao.animal.especies : 'Sem espécie'}">Espécie</td>
-      <td th:text="${solicitacao.status}">Status</td>
-      <td th:text="${solicitacao.dataSolicitacao}">Data</td>
-      <td>
-        <form th:action="@{/solicitacoes/aceitar/{id}(id=${solicitacao.id})}" method="post" style="display:inline-block;">
-          <button type="submit">Aceitar</button>
-        </form>
-        <form th:action="@{/solicitacoes/recusar/{id}(id=${solicitacao.id})}" method="post" style="display:inline-block;">
-          <button type="submit">Recusar</button>
-        </form>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
-<a href="/catalogo">Voltar ao catálogo</a>
-
+    <div class="voltar">
+      <a th:href="@{/catalogo}">← Voltar ao catálogo</a>
+    </div>
+  </div>
 </body>
 </html>
+

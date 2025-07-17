@@ -19,13 +19,12 @@ public class cadastroController {
     @GetMapping("/cadastros")
     public String mostrarFormularioCadastro(Model model) {
         model.addAttribute("cadastroModel", new cadastroModel());
-        return "Cadastro"; //cadastro.html
+        return "Cadastro"; 
     }
 
     //recebe os dados do formulario e salva no banco de dados através do repository
     @PostMapping("/cadastros")
     public String salvarCadastro(@ModelAttribute cadastroModel cadastroModel, Model model) {
-        // Você pode validar se o tipo foi informado, opcional
         if (cadastroModel.getTipo() == null || cadastroModel.getTipo().isEmpty()) {
             model.addAttribute("erro", "O campo tipo é obrigatório.");
             return "Cadastro";

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class loginController {
 
     @Autowired
-    private cadastroRepository cadastroRepository; //usando o cadastroRepository
+    private cadastroRepository cadastroRepository;
 
     //exibe a tela de login
     @GetMapping("/login")
