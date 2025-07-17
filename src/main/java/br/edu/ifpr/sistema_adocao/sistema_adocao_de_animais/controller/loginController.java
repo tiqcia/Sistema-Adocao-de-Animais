@@ -31,10 +31,9 @@ public class loginController {
         );
 
         if (usuario != null) {
-            //salva o usuário na sessão
-            session.setAttribute("usuario", usuario.getNome()); 
-
-            return "redirect:/catalogo"; 
+            session.setAttribute("usuario", usuario.getNome());
+            session.setAttribute("tipo", usuario.getTipo()); // salva tipo: FUNCIONARIO ou ADOTANTE
+            return "redirect:/catalogo";
         } else {
             model.addAttribute("erro", "Email ou senha inválidos");
             return "login";
@@ -46,5 +45,6 @@ public class loginController {
         session.invalidate(); //limpa os dados da sessão
         return "redirect:/login"; 
     }
+    
     
 }

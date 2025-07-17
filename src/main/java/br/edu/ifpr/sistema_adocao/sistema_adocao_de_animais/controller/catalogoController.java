@@ -28,11 +28,18 @@ public class catalogoController {
         model.addAttribute("animais", animalRepository.findAll());
 
         String usuarioLogado = (String) session.getAttribute("usuario");
+        String tipoUsuario = (String) session.getAttribute("tipo");  // Pega o tipo da sessão
+
         if (usuarioLogado != null) {
             model.addAttribute("username", usuarioLogado);
         }
+        if (tipoUsuario != null) {
+            model.addAttribute("tipo", tipoUsuario);  // Passa tipo para o template
+        }
 
-        return "catalogo";}
+        return "catalogo";
+    }
+
 
     @GetMapping("/imagem/{id}")
     public ResponseEntity<byte[]> getImagemAnimal(@PathVariable Long id) {

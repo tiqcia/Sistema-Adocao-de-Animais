@@ -275,10 +275,13 @@
     <!-- Navegação superior -->
   <nav class="navegacao-principal">
     <div class="conteudo-menu">
-      <ul class="lista-menu">
+    <ul class="lista-menu">
         <li><a th:href="@{/catalogo}">Conheça os queridos</a></li>
-        <li><a th:href="@{/animais/cadastrar}">Cadastrar querido</a></li>
-      </ul>
+        <li th:if="${tipo == 'FUNCIONARIO'}">
+            <a th:href="@{/animais/cadastrar}">Cadastrar querido</a>
+        </li>
+    </ul>
+
 
       <div class="area-botoes">
         <!-- Quando o usuário está logado -->

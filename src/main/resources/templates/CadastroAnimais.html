@@ -164,11 +164,18 @@ h1, h2 {
 </head>
 
 <body>
+    <nav>
+        <ul>
+        <li th:if="${session.tipo == 'FUNCIONARIO'}">
+            <a th:href="@{/animais/cadastrar}"></a>
+        </li>
+        <!-- Você pode adicionar mais itens aqui -->
+        </ul>
+    </nav>
 
     <section class="final">
         <form th:action="@{/animais/cadastrar}"  th:object="${animalModel}" method="post" enctype="multipart/form-data">
 
-    
             <p>Cadastre seu querido aqui!</p>
 
             <!-- campo da espécie  -->

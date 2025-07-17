@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -23,11 +24,18 @@ public class cadastroController {
 
     //recebe os dados do formulario e salva no banco de dados através do repository
     @PostMapping("/cadastros")
-    public String salvarCadastro(cadastroModel cadastroModel, Model model) {
+    public String salvarCadastro(@ModelAttribute cadastroModel cadastroModel, Model model) {
+        // Você pode validar se o tipo foi informado, opcional
+        if (cadastroModel.getTipo() == null || cadastroModel.getTipo().isEmpty()) {
+            model.addAttribute("erro", "O campo tipo é obrigatório.");
+            return "Cadastro";
+        }
+        
         cadastroRepository.save(cadastroModel);
         model.addAttribute("mensagem", "Cadastro realizado com sucesso!");
-        model.addAttribute("cadastroModel", new cadastroModel()); // limpa o formulário
+        model.addAttribute("cadastroModel", new cadastroModel());
         return "Cadastro"; 
     }
+
 
 }

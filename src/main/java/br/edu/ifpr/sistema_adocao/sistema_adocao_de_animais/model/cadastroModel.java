@@ -61,6 +61,10 @@ public class cadastroModel implements Serializable{
     @Column(name="bairro", nullable = false)
     private String bairro;
 
+    @Column(name="tipo", nullable = false)
+    private String tipo; // valores: "FUNCIONARIO" ou "ADOTANTE"
+
+
     public cadastroModel(){
         
     }
