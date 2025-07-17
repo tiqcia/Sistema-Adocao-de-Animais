@@ -8,7 +8,6 @@ public class homeController {
 
     @GetMapping("/")
     public String paginaInicial() {
-        //redireciona para a rota que exibe o catálogo
         return "redirect:/catalogo";
     }
 }

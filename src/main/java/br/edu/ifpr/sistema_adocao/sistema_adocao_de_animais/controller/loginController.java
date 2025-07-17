@@ -31,14 +31,14 @@ public class loginController {
         );
 
         if (usuario != null) {
-            session.setAttribute("usuario", usuario.getNome());
-            session.setAttribute("tipo", usuario.getTipo()); // salva tipo: FUNCIONARIO ou ADOTANTE
+            session.setAttribute("usuarioLogado", usuario);  // objeto completo
             return "redirect:/catalogo";
         } else {
             model.addAttribute("erro", "Email ou senha inválidos");
             return "login";
         }
     }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

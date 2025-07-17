@@ -2,6 +2,7 @@ package br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.controller;
 
 import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.repository.animalRepository;
 import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.model.animalModel;
+import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.model.cadastroModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -27,19 +28,15 @@ public class catalogoController {
     public String mostrarCatalogo(Model model, HttpSession session) {
         model.addAttribute("animais", animalRepository.findAll());
 
-        String usuarioLogado = (String) session.getAttribute("usuario");
-        String tipoUsuario = (String) session.getAttribute("tipo");  // Pega o tipo da sessão
+        cadastroModel usuario = (cadastroModel) session.getAttribute("usuarioLogado");
 
-        if (usuarioLogado != null) {
-            model.addAttribute("username", usuarioLogado);
-        }
-        if (tipoUsuario != null) {
-            model.addAttribute("tipo", tipoUsuario);  // Passa tipo para o template
+        if (usuario != null) {
+            model.addAttribute("username", usuario.getNome());
+            model.addAttribute("tipo", usuario.getTipo());
         }
 
         return "catalogo";
     }
-
 
     @GetMapping("/imagem/{id}")
     public ResponseEntity<byte[]> getImagemAnimal(@PathVariable Long id) {

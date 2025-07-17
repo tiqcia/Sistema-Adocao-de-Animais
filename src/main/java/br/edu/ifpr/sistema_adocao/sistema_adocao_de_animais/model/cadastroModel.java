@@ -62,11 +62,19 @@ public class cadastroModel implements Serializable{
     private String bairro;
 
     @Column(name="tipo", nullable = false)
-    private String tipo; // valores: "FUNCIONARIO" ou "ADOTANTE"
+    private String tipo; 
 
 
     public cadastroModel(){
         
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public Integer getCPF() {

@@ -1,6 +1,7 @@
 package br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.controller;
 
 import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.model.animalModel;
+import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.model.cadastroModel;
 import br.edu.ifpr.sistema_adocao.sistema_adocao_de_animais.repository.animalRepository;
 import jakarta.servlet.http.HttpSession;
 
@@ -21,13 +22,13 @@ public class animalController {
 
     @GetMapping("/animais/cadastrar")
     public String exibirFormulario(Model model, HttpSession session) {
-        String tipo = (String) session.getAttribute("tipo");
-        if (tipo == null || !tipo.equals("FUNCIONARIO")) {
+        cadastroModel usuario = (cadastroModel) session.getAttribute("usuarioLogado");
+        if (usuario == null || !usuario.getTipo().equals("FUNCIONARIO")) {
             return "redirect:/catalogo"; // redireciona se não for funcionário
         }
 
         model.addAttribute("animalModel", new animalModel());
-        return "CadastroAnimais";
+        return "CadastroAnimais"; // nome do template do formulário
     }
 
     //recebe os dados do formulario e salva no banco de dados através do repository
