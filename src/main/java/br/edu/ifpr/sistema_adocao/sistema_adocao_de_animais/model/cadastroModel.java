@@ -28,7 +28,7 @@ public class cadastroModel implements Serializable{
 
     //Chave primária
     @Id
-    private Integer CPF;
+    private String CPF;
 
     //Atributos
     @Column(name = "nome", nullable = false)
@@ -77,11 +77,11 @@ public class cadastroModel implements Serializable{
         this.tipo = tipo;
     }
 
-    public Integer getCPF() {
+    public String getCPF() {
         return CPF;
     }
 
-    public void setCPF(Integer CPF) {
+    public void setCPF(String CPF) {
         this.CPF = CPF;
     }
 
